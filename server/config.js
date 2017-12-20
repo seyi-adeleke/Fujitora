@@ -1,15 +1,17 @@
-const path = require("path");
-const rootPath = path.normalize(__dirname + "/../");
+const path = require('path');
+const rootPath = path.normalize(__dirname + '/../');
 
 module.exports = {
     development:{
-        db:"local db goes here",
+        db: 'mongodb://localhost/fujitora-dev',
         rootPath:rootPath,
-        port:process.env.PORT || 8080
+        port:process.env.PORT || 8080,
+        url: process.env.BASE_URL || 'http://localhost:8080'
     },
     production:{
         db:process.env.PROD_DB,
         rootPath:rootPath,
-        port:process.env.PORT || 80
+        port:process.env.PORT || 80,
+        url: process.env.BASE_URL
     }
 };
