@@ -6,12 +6,12 @@ module.exports = {
         db: 'mongodb://localhost/fujitora-dev',
         rootPath:rootPath,
         port:process.env.PORT || 8080,
-        url: process.env.BASE_URL || 'http://localhost:8080'
+        baseUrl: process.env.BASE_URL || 'http://localhost:8080/'
     },
     production:{
         db:process.env.PROD_DB,
         rootPath:rootPath,
         port:process.env.PORT || 80,
-        url: process.env.BASE_URL
+        baseUrl: process.env.BASE_URL + '/'
     }
 };
