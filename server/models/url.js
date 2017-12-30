@@ -8,6 +8,7 @@ const urlSchema = mongoose.Schema({
     },
     short: {
         type: String,
+        unique: true,
     },
     date: {
         type: Date,
