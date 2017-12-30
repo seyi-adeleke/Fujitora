@@ -1,32 +1,51 @@
 const Url = require('../models/url');
-const id = require('idgen');
+const identifier = require('idgen');
+const validUrl = require('valid-url');
 
 module.exports = (app, config) => {
 
     app.get('/', (req, res) => res.send('Hello World!'));
 
     app.post('/api/v1/shorten', (req, res) => {
-        let shortened = config.baseUrl + id(3);
-        const shortenedUrl  = new Url({
-            long: req.body.url,
-            short: shortened
-        });
-        shortenedUrl.save((error) => {
-            if (error) {
-                res.status(400).json({
-                    message: "Error saving to db",
-                    error,
-                })
-            } else {
-                res.status(201).json({
-                    long: req.body.url,
-                    short: shortened,
-                })
-            }
-        });
+        const id = identifier(3);
+        const shortened = config.baseUrl + id;
+
+        if (!validUrl.isUri(req.body.url)){
+            res.status(400).json({
+                message: 'Please input a valid url'
+            });
+        } else {
+            const shortenedUrl  = new Url({
+                long: req.body.url,
+                short: shortened,
+                id,
+            });
+            shortenedUrl.save((error) => {
+                if (error) {
+                    res.status(400).json({
+                        message: "Error saving to db",
+                        error,
+                    })
+                } else {
+                    res.status(201).json({
+                        long: req.body.url,
+                        short: shortened,
+                        id,
+                    })
+                }
+            });
+        }
     });
 
-    app.get('/:encoded_id', (req, res) => {
-        //TODO
+    app.get('/:id', (req, res) => {
+        Url.findOne({
+            id: req.params.id
+        }, (error, url) =>{
+            if (error) {
+                res.redirect(config.baseUrl);
+            } else {
+                res.redirect(301, url.long);
+            }
+        })
     });
 };
