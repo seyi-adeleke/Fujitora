@@ -1,6 +1,8 @@
 const Url = require('../models/url');
 const identifier = require('idgen');
+//TODO - use custom id generator
 const validUrl = require('valid-url');
+//TODO - use regex instead
 
 module.exports = (app, config) => {
 
