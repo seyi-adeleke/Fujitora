@@ -1,12 +1,12 @@
-const Url = require('../models/url');
 const identifier = require('idgen');
 //TODO - use custom id generator
 const validUrl = require('valid-url');
 //TODO - use regex instead
+const Url = require('../models/url');
+
 
 module.exports = (app, config) => {
 
-    app.get('/', (req, res) => res.send('Hello World!'));
 
     app.post('/api/v1/shorten', (req, res) => {
         const id = identifier(3);
