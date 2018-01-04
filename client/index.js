@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Body from './components/Body.jsx';
+import './styles/styles.css';
 
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(
-    <h1>Hello World abacha is here again</h1>, rootEl
+    <Body />, rootEl
 );
