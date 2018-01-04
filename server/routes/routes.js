@@ -7,7 +7,6 @@ const Url = require('../models/url');
 
 module.exports = (app, config) => {
 
-
     app.post('/api/v1/shorten', (req, res) => {
         const id = identifier(3);
         const shortened = config.baseUrl + id;
@@ -45,8 +44,14 @@ module.exports = (app, config) => {
         }, (error, url) =>{
             if (error) {
                 res.redirect(config.baseUrl);
-            } else {
+            }
+            if (url) {
                 res.redirect(301, url.long);
+            }
+            else {
+                res.status(404).json({
+                    info:"Url not found"
+                });
             }
         })
     });
