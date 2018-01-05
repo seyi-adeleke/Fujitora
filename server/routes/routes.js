@@ -49,9 +49,7 @@ module.exports = (app, config) => {
                 res.redirect(301, url.long);
             }
             else {
-                res.status(404).json({
-                    info:"Url not found"
-                });
+                res.redirect(config.baseUrl);
             }
         })
     });
