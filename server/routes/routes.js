@@ -3,7 +3,7 @@ const identifier = require('idgen');
 const validUrl = require('valid-url');
 //TODO - use regex instead
 const Url = require('../models/url');
-
+const handleMongoError = require('../utils/handleMongoError');
 
 module.exports = (app, config) => {
 
@@ -23,11 +23,9 @@ module.exports = (app, config) => {
             });
             shortenedUrl.save((error) => {
                 if (error) {
-                    res.status(400).json({
-                        message: "Error saving to db",
-                        error,
-                    })
-                } else {
+                    handleMongoError(error);
+                }
+                else {
                     res.status(201).json({
                         long: req.body.url,
                         short: shortened,
