@@ -78,14 +78,13 @@ class Body extends Component {
             showToast: true,
         })
     }
-    
+
     render() {
         return(
         <div className='container'>
-                <div>
-                     <h2 className='title'>Fujitora</h2>
-                </div>
-                <div className='row flex-center'>
+            <h2>Fujitora</h2>
+            <p>URL Shortener</p>
+            <div className='row flex-center'>
                     <div className="col sm-10">
                         <div className="form-group">
                             <div className="collapsible">

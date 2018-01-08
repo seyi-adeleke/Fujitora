@@ -11,7 +11,7 @@ module.exports = {
     production:{
         db:process.env.PROD_DB,
         rootPath:rootPath,
-        port:process.env.PORT || 80,
+        port:process.env.PORT,
         baseUrl: process.env.BASE_URL + '/'
     }
 };
