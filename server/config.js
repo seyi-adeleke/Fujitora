@@ -3,7 +3,7 @@ const rootPath = path.normalize(__dirname + '/../');
 
 module.exports = {
     development:{
-        db: 'mongodb://localhost/fujitora-dev2',
+        db: 'mongodb://localhost/fujitora-dev4',
         rootPath:rootPath,
         port:process.env.PORT || 8080,
         baseUrl: process.env.BASE_URL || 'http://localhost:8080/'

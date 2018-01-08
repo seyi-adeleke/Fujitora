@@ -6,3 +6,12 @@ body{
     text-align:center;
     align-items: center;
 }
+
+.modal-link{
+    margin-left: 20px;
+}
+
+.fa-question-circle {
+    /*margin-left: -10px;*/
+    /*margin-top: 50px;*/
+}
