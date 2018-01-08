@@ -23,13 +23,14 @@ module.exports = (app, config) => {
             });
             shortenedUrl.save((error) => {
                 if (error) {
-                    handleMongoError(error);
+                    handleMongoError(error, req, res);
                 }
                 else {
                     res.status(201).json({
                         long: req.body.url,
                         short: shortened,
                         id,
+                        message:'Your short URL',
                     })
                 }
             });
