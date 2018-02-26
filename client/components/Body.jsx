@@ -29,6 +29,7 @@ class Body extends Component {
             showToast: false,
             message: null,
             helpMessage:false,
+            hits: 0,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -49,10 +50,12 @@ class Body extends Component {
         axios.post('/api/v1/shorten', {
             url: this.state.url
         }).then((response) => {
+            console.log(response);
             this.setState({
                 shortUrl:response.data.short,
                 showModal: true,
                 message:response.data.message,
+                hits: response.data.hits,
             });
         }).catch((error) => {
             console.log(error)
@@ -111,6 +114,7 @@ class Body extends Component {
             >
                 <div className='container'>
                     <h5 className="modal-subtitle">{this.state.message}</h5>
+                    <h6> Hits: {this.state.hits}</h6>
                     <div>
                         <p>{this.state.shortUrl}</p>
                     </div>

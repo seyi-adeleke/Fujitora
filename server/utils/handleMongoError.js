@@ -8,6 +8,7 @@ module.exports = (error, req, res) => {
             res.status(200).json({
                 short: url.short,
                 message:'This url has been saved already!',
+                hits: url.hits,
             })
         })
     }
