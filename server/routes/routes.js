@@ -35,34 +35,6 @@ module.exports = (app, config) => {
         })
     });
 
-    const updateHitCount = (url, res) => {
-        return Url.findOne({
-            id: url.id
-        },  (error, url) => {
-            if (url) {
-                url.hits = url.hits + 1;
-                url.save();
-            }
-            res.redirect(301, url.long);
-        });
-    };
-
-    app.get(/^\/([\w=]+)$/, (req, res) => {
-        Url.findOne({
-            id: req.params[0]
-        }, (error, url) => {
-            if (error) {
-                res.redirect(config.baseUrl);
-            }
-            if (url) {
-                updateHitCount(url, res);
-            }
-            else {
-                res.redirect(config.baseUrl);
-            }
-        })
-    });
-
     app.post('/api/v1/shorten', (req, res) => {
         const id = identifier(3);
         const shortened = config.baseUrl + id;
