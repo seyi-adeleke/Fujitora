@@ -18,10 +18,6 @@ const urlSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    hits: {
-        type: Number,
-        default: 0
-    }
 });
 
 module.exports = mongoose.model('Url', urlSchema);

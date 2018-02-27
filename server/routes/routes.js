@@ -6,34 +6,6 @@ const Url = require('../models/url');
 const handleMongoError = require('../utils/handleMongoError');
 
 module.exports = (app, config) => {
-    
-    const updateHitCount = (url, res) => {
-        return Url.findOne({
-            id: url.id
-        },  (error, url) => {
-            if (url) {
-                url.hits = url.hits + 1;
-                url.save();
-            }
-            res.redirect(301, url.long);
-        });
-    };
-
-    app.get(/^\/([\w=]+)$/, (req, res) => {
-        Url.findOne({
-            id: req.params[0]
-        }, (error, url) => {
-            if (error) {
-                res.redirect(config.baseUrl);
-            }
-            if (url) {
-                updateHitCount(url, res);
-            }
-            else {
-                res.redirect(config.baseUrl);
-            }
-        })
-    });
 
     const updateHitCount = (url, res) => {
         return Url.findOne({
@@ -77,7 +49,7 @@ module.exports = (app, config) => {
                 short: shortened,
                 id,
             });
-            shortenedUrl.save((error, url) => {
+            shortenedUrl.save((error) => {
                 if (error) {
                     handleMongoError(error, req, res);
                 }
@@ -87,11 +59,25 @@ module.exports = (app, config) => {
                         short: shortened,
                         id,
                         message:'Your short URL',
-                        hits: url.hits,
                     })
                 }
             });
         }
     });
 
+    app.get('/:id', (req, res) => {
+        Url.findOne({
+            id: req.params.id
+        }, (error, url) =>{
+            if (error) {
+                res.redirect(config.baseUrl);
+            }
+            if (url) {
+                res.redirect(301, url.long);
+            }
+            else {
+                res.redirect(config.baseUrl);
+            }
+        })
+    });
 };
