@@ -4,6 +4,16 @@ const URL = require('../server/models/url');
 
 
 describe("Server Spec", () => {
+    describe('*', () => {
+        it("returns the react client", (done) =>  {
+            request(app)
+                .post('/')
+                .end((err, res) => {
+                    expect(res.status).toBe(200);
+                    done();
+                });
+        });
+    });
     describe("GET /", () => {
         it("returns status code 200", (done) =>  {
             request(app)
