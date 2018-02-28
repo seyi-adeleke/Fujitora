@@ -6,7 +6,7 @@ const Url = require('../models/url');
 const handleMongoError = require('../utils/handleMongoError');
 
 module.exports = (app, config) => {
-    
+
     const updateHitCount = (url, res) => {
         return Url.findOne({
             id: url.id
