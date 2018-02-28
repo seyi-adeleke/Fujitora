@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const app = express();
 
 const env = process.env.NODE_ENV =  process.env.NODE_ENV || 'development';
+
 const config = require("./config")[env];
 const indexPath = path.join(__dirname, '../public/index.html');
 

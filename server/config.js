@@ -15,9 +15,9 @@ module.exports = {
         baseUrl: process.env.BASE_URL + '/'
     },
     test:{
-        db: 'mongodb://localhost/fujitora-test',
+        db:  process.env.TEST_DB || 'mongodb://localhost/fujitora-test',
         rootPath:rootPath,
         port:process.env.PORT || 8080,
         baseUrl: process.env.BASE_URL || 'http://localhost:8080/'
-    }
+    },
 };
