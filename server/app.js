@@ -38,3 +38,5 @@ app.use('*', (req, res) => {
 
 
 app.listen(config.port);
+
+module.exports = app;

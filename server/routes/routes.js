@@ -24,13 +24,13 @@ module.exports = (app, config) => {
             id: req.params[0]
         }, (error, url) => {
             if (error) {
-                res.redirect(config.baseUrl);
+                res.redirect(302, config.baseUrl);
             }
             if (url) {
                 updateHitCount(url, res);
             }
             else {
-                res.redirect(config.baseUrl);
+                res.redirect(302, config.baseUrl);
             }
         })
     });
