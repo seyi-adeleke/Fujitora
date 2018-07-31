@@ -51,6 +51,11 @@ module.exports = {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                API_URL: JSON.stringify('http://localhost:8080')
+            },
+        }),
         HtmlWebpackPluginConfig,
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),

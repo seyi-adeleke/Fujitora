@@ -47,10 +47,9 @@ class Body extends Component {
     };
 
     handleClick() {
-        axios.post('/api/v1/shorten', {
+        axios.post(`${process.env.API_URL}/api/v1/shorten`, {
             url: this.state.url
         }).then((response) => {
-            console.log(response);
             this.setState({
                 shortUrl:response.data.short,
                 showModal: true,
@@ -58,7 +57,7 @@ class Body extends Component {
                 hits: response.data.hits,
             });
         }).catch((error) => {
-            console.log(error)
+            // error handling
         });
         this.setState({
             validUrl: false,
